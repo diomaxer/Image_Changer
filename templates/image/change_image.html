@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Image</title>
+</head>
+<body>
+<p><a href="{% url 'home' %}">Назад к списку</a></p>
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    Ширина
+    <p><input name="width"></p>
+    Высота
+    <p><input name="height"></p>
+    <button type="submit">Отправить</button>
+    <p><img src="{{ image.image.url }}"></p>
+</form>
+{% endblock %}
+</body>
+</html>

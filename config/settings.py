@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # My pip
+    'django_cleanup',
+
     # My apps
     'image',
 ]

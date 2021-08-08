@@ -7,12 +7,13 @@
 <body>
 <p><a href="{% url 'home' %}">Назад к списку</a></p>
 {% block content %}
+<p>{{ error }}</p>
 <form method="POST">
     {% csrf_token %}
     Ширина
-    <p><input name="width"></p>
+    <p><input name="width" placeholder="Ширина"></p>
     Высота
-    <p><input name="height"></p>
+    <p><input name="height" placeholder="Высота"></p>
     <button type="submit">Отправить</button>
     <p><img src="{{ image.image.url }}"></p>
 </form>

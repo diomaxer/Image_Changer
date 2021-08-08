@@ -28,11 +28,11 @@ MacOS и Linux немного отличаются
 
 Следущей командой скачайте код проекта
 
-    git clone https://github.com/diomaxer/Access_Logs.git
+    git clone https://github.com/diomaxer/Image_Changer.git
 
 Проэкт сохрнаился в папке . Перейдите в неё следующей командой
 
-    cd/Access_Logs
+    cd Image_Changer
 
 Теперь вам необходимо установить фреймворки для
 данного Django проекта. Вводите команду
@@ -44,7 +44,7 @@ MacOS и Linux немного отличаются
 Чтобы создать базу данных введите следующие команды 
 
     python manage.py makemigrations
-    python manage.pt migrate
+    python manage.py migrate
 
 После этого у вас должен появиться файл с названием ds.sqlite3, здесь и будут
 храниться созданные таблицы с данными.

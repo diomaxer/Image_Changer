@@ -14,6 +14,7 @@ from .forms import ImageForm
 
 
 def home_page_view(request):
+    """Домашняя страница"""
     images = Image.objects.all()
     context = {
         'images': images
@@ -22,7 +23,7 @@ def home_page_view(request):
 
 
 def add_image(request):
-    """Process images uploaded by users"""
+    """Загрузить изображение"""
     if request.method == 'POST':
         link = request.POST['link']
         form = ImageForm(request.POST, request.FILES)
@@ -70,12 +71,14 @@ def add_image(request):
 
 
 def change_image_view(request):
+    """Поменять размер изображения"""
     image = Image.objects.latest('id')
     error = None
     if request.method == 'POST':
         width = request.POST['width'] or None
         height = request.POST['height'] or None
         if width is None and height is None:
+            image = Image.objects.latest('id')
             return render(request, 'image/change_image.html', {
                 'image': image,
                 'error': 'Заполните хотя бы одно поле',
@@ -93,6 +96,7 @@ def change_image_view(request):
             if height > 1080:
                 error = 'Высота не может быть больше 1080'
         if error is not None:
+            image = Image.objects.latest('id')
             return render(request, 'image/change_image.html', {
                 'image': image,
                 'error': error,
@@ -100,7 +104,7 @@ def change_image_view(request):
         new_image = shutil.copyfile(image.image.path, settings.BASE_DIR / 'media/media' / (str(uuid.uuid4()) + ".png"))
         with open(new_image) as f:
             f.close()
-            Image.objects.create(image=f.name)
+            image = Image.objects.create(image=f.name)
         image.resized_img(width=width, height=height)
     context = {
         'image': image
